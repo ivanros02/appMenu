@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Restaurante {
+  id        String   @id @default(uuid())
+  nombre    String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Datos públicos para la vista del menú (QR del cliente)
+  logoUrl       String?
+  horarioTexto  String?
+  direccion     String?
+  googleMapsUrl String?
+  wifiNombre    String?
+  wifiPassword  String?
+  telefono      String?
+  instagramUrl  String?
+  tiktokUrl     String?
+
+  categorias Categoria[]
+  platos     Plato[]
+  usuarios   Usuario[]
+  etiquetas  Etiqueta[]
+
+  @@map("restaurantes")
+}
+
+model Usuario {
+  id            String   @id @default(uuid())
+  username      String   @unique
+  passwordHash  String
+  rol           RolUsuario @default(ADMIN)
+  restauranteId String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  restaurante Restaurante @relation(fields: [restauranteId], references: [id], onDelete: Cascade)
+
+  @@index([restauranteId])
+  @@map("usuarios")
+}
+
+enum RolUsuario {
+  ADMIN
+}
+
+model Categoria {
+  id            String   @id @default(uuid())
+  nombre        String
+  restauranteId String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  restaurante Restaurante @relation(fields: [restauranteId], references: [id], onDelete: Cascade)
+  platos      Plato[]
+
+  @@unique([restauranteId, nombre])
+  @@index([restauranteId])
+  @@map("categorias")
+}
+
+model Plato {
+  id            String     @id @default(uuid())
+  nombre        String
+  descripcion   String?
+  precio        Decimal    @db.Decimal(10, 2)
+  imagenUrl     String?
+  etiquetas     Etiqueta[]
+  disponible    Boolean    @default(true)
+  restauranteId String
+  categoriaId   String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  restaurante Restaurante @relation(fields: [restauranteId], references: [id], onDelete: Cascade)
+  categoria   Categoria   @relation(fields: [categoriaId], references: [id], onDelete: Restrict)
+
+  @@index([restauranteId])
+  @@index([restauranteId, categoriaId])
+  @@map("platos")
+}
+
+model Etiqueta {
+  id            String   @id @default(uuid())
+  nombre        String
+  restauranteId String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  restaurante Restaurante @relation(fields: [restauranteId], references: [id], onDelete: Cascade)
+  platos      Plato[]
+
+  @@unique([restauranteId, nombre])
+  @@index([restauranteId])
+  @@map("etiquetas")
+}
