@@ -8,6 +8,7 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { EtiquetasModule } from './etiquetas/etiquetas.module';
 import { PublicModule } from './public/public.module';
 import { RestaurantesModule } from './restaurantes/restaurantes.module';
+import { UploadsModule } from './uploads/uploads.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RestaurantesModule } from './restaurantes/restaurantes.module';
     EtiquetasModule,
     PublicModule,
     RestaurantesModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

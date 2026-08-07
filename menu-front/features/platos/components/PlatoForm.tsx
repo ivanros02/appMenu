@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { toast } from 'sonner';
 import type { Categoria, CreatePlatoInput, Etiqueta, Plato } from '../types/plato';
 import { createPlato, updatePlato } from '../api/platos-api';
+import { CampoImagen } from '@/features/uploads/components/CampoImagen';
 
 interface PlatoFormProps {
   token: string;
@@ -137,12 +138,18 @@ export function PlatoForm({
         </div>
 
         <div className="sm:col-span-2">
-          <label className={labelClass}>URL de imagen</label>
+          <CampoImagen
+            label="Imagen del plato"
+            value={form.imagenUrl ?? ''}
+            onChange={(url) => setForm({ ...form, imagenUrl: url })}
+            token={token}
+          />
           <input
             type="url"
+            placeholder="O pegá una URL directamente"
             value={form.imagenUrl}
             onChange={(e) => setForm({ ...form, imagenUrl: e.target.value })}
-            className={inputClass}
+            className={`${inputClass} mt-2`}
           />
         </div>
 

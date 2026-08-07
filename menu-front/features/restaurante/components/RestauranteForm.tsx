@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { toast } from 'sonner';
 import type { RestaurantePerfil, UpdateRestauranteInput } from '../types/restaurante';
 import { updateMiRestaurante } from '../api/restaurante-api';
+import { CampoImagen } from '@/features/uploads/components/CampoImagen';
 
 interface RestauranteFormProps {
   token: string;
@@ -122,7 +123,7 @@ export function RestauranteForm({ token, perfil }: RestauranteFormProps) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <Seccion titulo="Datos generales">
         <Campo label="Nombre del restaurante" value={form.nombre ?? ''} onChange={(v) => set('nombre', v)} full />
-        <Campo label="URL del logo" value={form.logoUrl ?? ''} onChange={(v) => set('logoUrl', v)} type="url" />
+        <CampoImagen label="Logo" value={form.logoUrl ?? ''} onChange={(url) => set('logoUrl', url)} token={token} />
       </Seccion>
 
       <Seccion titulo="Ubicación y horario">

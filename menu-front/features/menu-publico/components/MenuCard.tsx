@@ -35,7 +35,7 @@ export function MenuCard({ plato, slug }: MenuCardProps) {
           {formatoPrecio.format(Number(plato.precio))}
         </p>
         {plato.descripcion && (
-          <p className="mt-1.5 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
+          <p className="mt-1.5 line-clamp-2 break-all text-xs text-slate-500 dark:text-slate-400">
             {plato.descripcion}
           </p>
         )}
