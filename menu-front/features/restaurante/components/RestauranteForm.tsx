@@ -11,15 +11,13 @@ interface RestauranteFormProps {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 text-sm outline-none focus:border-neutral-900 dark:border-neutral-700 dark:focus:border-neutral-100';
-const labelClass = 'mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300';
+  'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none transition-colors duration-150 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500';
+const labelClass = 'mb-1 block text-sm font-medium text-gray-900';
 
 function Seccion({ titulo, children }: { titulo: string; children: React.ReactNode }) {
   return (
-    <fieldset className="space-y-4 rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
-      <legend className="px-1 text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-        {titulo}
-      </legend>
+    <fieldset className="space-y-4 rounded-xl border border-gray-200 bg-white p-4">
+      <legend className="px-1 text-sm font-semibold text-gray-900">{titulo}</legend>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">{children}</div>
     </fieldset>
   );
@@ -46,6 +44,37 @@ function Campo({
   );
 }
 
+function CampoColor({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (valor: string) => void;
+}) {
+  return (
+    <div>
+      <label className={labelClass}>{label}</label>
+      <div className="flex items-center gap-2">
+        <input
+          type="color"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="h-9 w-12 shrink-0 cursor-pointer rounded-md border border-gray-300 bg-white p-1"
+        />
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          pattern="^#[0-9A-Fa-f]{6}$"
+          className={inputClass}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function RestauranteForm({ token, perfil }: RestauranteFormProps) {
   const [form, setForm] = useState<UpdateRestauranteInput>({
     nombre: perfil.nombre,
@@ -58,6 +87,8 @@ export function RestauranteForm({ token, perfil }: RestauranteFormProps) {
     telefono: perfil.telefono ?? '',
     instagramUrl: perfil.instagramUrl ?? '',
     tiktokUrl: perfil.tiktokUrl ?? '',
+    colorFondo: perfil.colorFondo ?? '#d4dc94',
+    colorTexto: perfil.colorTexto ?? '#111111',
   });
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -120,12 +151,25 @@ export function RestauranteForm({ token, perfil }: RestauranteFormProps) {
         <Campo label="TikTok" value={form.tiktokUrl ?? ''} onChange={(v) => set('tiktokUrl', v)} type="url" />
       </Seccion>
 
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      <Seccion titulo="Apariencia del menú">
+        <CampoColor
+          label="Color de fondo"
+          value={form.colorFondo ?? '#d4dc94'}
+          onChange={(v) => set('colorFondo', v)}
+        />
+        <CampoColor
+          label="Color de texto"
+          value={form.colorTexto ?? '#111111'}
+          onChange={(v) => set('colorTexto', v)}
+        />
+      </Seccion>
+
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <button
         type="submit"
         disabled={guardando}
-        className="w-full rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:opacity-50 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+        className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-indigo-500 disabled:opacity-50"
       >
         {guardando ? 'Guardando...' : 'Guardar cambios'}
       </button>

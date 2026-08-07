@@ -13,7 +13,7 @@ interface CategoriaFormProps {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 text-sm outline-none focus:border-neutral-900 dark:border-neutral-700 dark:focus:border-neutral-100';
+  'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none transition-colors duration-150 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500';
 
 export function CategoriaForm({ token, categoriaAEditar, onSuccess, onCancel }: CategoriaFormProps) {
   const esEdicion = Boolean(categoriaAEditar);
@@ -45,12 +45,10 @@ export function CategoriaForm({ token, categoriaAEditar, onSuccess, onCancel }: 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 rounded-xl border border-neutral-200 bg-white p-4 shadow-sm sm:flex-row sm:items-end dark:border-neutral-800 dark:bg-neutral-900"
+      className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:flex-row sm:items-end"
     >
       <div className="flex-1">
-        <label className="mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
-          Nombre de la categoría
-        </label>
+        <label className="mb-1 block text-sm font-medium text-gray-900">Nombre de la categoría</label>
         <input
           required
           minLength={2}
@@ -59,21 +57,21 @@ export function CategoriaForm({ token, categoriaAEditar, onSuccess, onCancel }: 
           onChange={(e) => setNombre(e.target.value)}
           className={inputClass}
         />
-        {error && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{error}</p>}
+        {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
       </div>
 
       <div className="flex gap-2">
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-lg px-4 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+          className="rounded-lg px-4 py-2 text-sm font-medium text-gray-900 transition-colors duration-150 hover:bg-gray-100"
         >
           Cancelar
         </button>
         <button
           type="submit"
           disabled={enviando}
-          className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:opacity-50 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-indigo-500 disabled:opacity-50"
         >
           {enviando ? 'Guardando...' : esEdicion ? 'Guardar cambios' : 'Crear categoría'}
         </button>

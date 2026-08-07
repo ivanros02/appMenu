@@ -20,6 +20,8 @@ export class PublicRepository {
         telefono: true,
         instagramUrl: true,
         tiktokUrl: true,
+        colorFondo: true,
+        colorTexto: true,
         categorias: {
           orderBy: { nombre: 'asc' },
           select: {
@@ -64,6 +66,7 @@ export class PublicRepository {
         etiquetas: { select: { id: true, nombre: true } },
         categoriaId: true,
         categoria: { select: { id: true, nombre: true } },
+        restaurante: { select: { colorFondo: true, colorTexto: true } },
       },
     });
   }

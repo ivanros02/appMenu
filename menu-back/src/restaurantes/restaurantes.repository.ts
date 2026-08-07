@@ -15,6 +15,8 @@ const SELECT_PERFIL = {
   telefono: true,
   instagramUrl: true,
   tiktokUrl: true,
+  colorFondo: true,
+  colorTexto: true,
 } satisfies Prisma.RestauranteSelect;
 
 @Injectable()

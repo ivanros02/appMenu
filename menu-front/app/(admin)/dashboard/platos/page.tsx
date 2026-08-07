@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { requireAuthToken } from '@/lib/auth';
 import { PlatoList } from '@/features/platos/components/PlatoList';
 import { getPlatos } from '@/features/platos/api/platos-api';
@@ -15,34 +14,9 @@ export default async function PlatosPage() {
   ]);
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10">
-      <div className="mb-4 flex justify-end gap-4">
-        <Link
-          href="/dashboard/categorias"
-          className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-        >
-          Categorías
-        </Link>
-        <Link
-          href="/dashboard/etiquetas"
-          className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-        >
-          Etiquetas
-        </Link>
-        <Link
-          href="/dashboard/configuracion"
-          className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-        >
-          Configuración
-        </Link>
-        <Link
-          href="/dashboard/cambiar-password"
-          className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-        >
-          Cambiar contraseña
-        </Link>
-      </div>
+    <div className="mx-auto max-w-5xl space-y-6">
+      <h1 className="text-2xl font-semibold text-gray-900">Platos</h1>
       <PlatoList token={token} categorias={categorias} etiquetas={etiquetas} platosIniciales={platos} />
-    </main>
+    </div>
   );
 }

@@ -16,6 +16,7 @@ export interface CategoriaPublica {
 
 export interface PlatoDetallePublico extends PlatoPublico {
   categoria: { id: string; nombre: string };
+  restaurante: { colorFondo: string | null; colorTexto: string | null };
 }
 
 export interface MenuPublico {
@@ -30,5 +31,7 @@ export interface MenuPublico {
   telefono: string | null;
   instagramUrl: string | null;
   tiktokUrl: string | null;
+  colorFondo: string | null;
+  colorTexto: string | null;
   categorias: CategoriaPublica[];
 }

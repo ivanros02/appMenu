@@ -21,7 +21,7 @@ export function Footer({ restaurante }: FooterProps) {
   const tieneRedes = restaurante.instagramUrl || restaurante.tiktokUrl;
 
   return (
-    <footer className="space-y-5 rounded-t-3xl border-t border-rose-100 bg-white px-5 py-8 dark:border-slate-800 dark:bg-slate-950">
+    <footer className="space-y-5 border-t border-white/20 px-5 py-8">
       {tieneRedes && (
         <div className="flex items-center justify-center gap-3">
           {restaurante.instagramUrl && (
@@ -30,7 +30,7 @@ export function Footer({ restaurante }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors duration-200 hover:bg-rose-50 hover:text-rose-500 dark:bg-slate-900 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/30 text-brand-text backdrop-blur-sm transition-colors duration-200 hover:bg-white/50"
             >
               <InstagramIcon />
             </a>
@@ -41,7 +41,7 @@ export function Footer({ restaurante }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors duration-200 hover:bg-rose-50 hover:text-rose-500 dark:bg-slate-900 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/30 text-brand-text backdrop-blur-sm transition-colors duration-200 hover:bg-white/50"
             >
               <Music2 className="h-5 w-5" />
             </a>
@@ -52,15 +52,15 @@ export function Footer({ restaurante }: FooterProps) {
       {restaurante.telefono && (
         <a
           href={`tel:${restaurante.telefono}`}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-800 px-4 py-3.5 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
+          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-dark px-4 py-3.5 text-sm font-medium text-white shadow-sm transition-opacity duration-200 hover:opacity-90"
         >
           <Phone className="h-4 w-4" />
           Llamar / Reservar
         </a>
       )}
 
-      <p className="text-center text-xs text-slate-400 dark:text-slate-600">
-        Menú potenciado por MiSaaS
+      <p className="text-center text-xs text-brand-text/50">
+        Menú potenciado por WorldsoftSystems
       </p>
     </footer>
   );

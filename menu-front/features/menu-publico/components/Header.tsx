@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export function Header({ restaurante }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between border-b border-rose-100 bg-white/90 px-5 py-4 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-950/90">
+    <header className="flex items-center justify-center border-b border-white/20 bg-white/20 px-5 py-4 backdrop-blur-xl">
       <div className="flex items-center gap-3">
         {restaurante.logoUrl ? (
           <Image
@@ -16,26 +16,28 @@ export function Header({ restaurante }: HeaderProps) {
             alt={restaurante.nombre}
             width={40}
             height={40}
-            className="h-10 w-10 rounded-full object-cover ring-2 ring-rose-100 dark:ring-slate-800"
+            className="h-10 w-10 rounded-full object-cover ring-2 ring-white/30"
           />
         ) : (
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-sm font-semibold text-white ring-2 ring-rose-100 dark:bg-slate-100 dark:text-slate-900 dark:ring-slate-800">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-dark text-sm font-semibold text-white ring-2 ring-white/30">
             {restaurante.nombre.charAt(0)}
           </div>
         )}
-        <span className="text-base font-semibold tracking-tight text-slate-800 dark:text-slate-100">
+        <span className="text-base font-semibold tracking-tight text-brand-text">
           {restaurante.nombre}
         </span>
       </div>
 
-      {/* Maqueta: el selector de idioma todavía no está implementado */}
+      {/* Maqueta: el selector de idioma todavía no está implementado 
       <button
         type="button"
         aria-label="Cambiar idioma"
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors duration-200 hover:bg-rose-50 hover:text-rose-500 dark:bg-slate-900 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+        className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-dark text-white shadow-lg shadow-black/20 transition-opacity duration-200 hover:opacity-90"
       >
         <Globe className="h-5 w-5" />
       </button>
+      */}
+      
     </header>
   );
 }

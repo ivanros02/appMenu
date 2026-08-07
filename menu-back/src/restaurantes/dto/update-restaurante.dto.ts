@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsUrl, MaxLength, MinLength } from 'class-validator';
+import { IsOptional, IsString, IsUrl, Matches, MaxLength, MinLength } from 'class-validator';
 
 export class UpdateRestauranteDto {
   @IsOptional()
@@ -47,4 +47,12 @@ export class UpdateRestauranteDto {
   @IsOptional()
   @IsUrl()
   tiktokUrl?: string;
+
+  @IsOptional()
+  @Matches(/^#[0-9A-Fa-f]{6}$/, { message: 'colorFondo debe ser un hex válido, ej: #d4dc94' })
+  colorFondo?: string;
+
+  @IsOptional()
+  @Matches(/^#[0-9A-Fa-f]{6}$/, { message: 'colorTexto debe ser un hex válido, ej: #111111' })
+  colorTexto?: string;
 }

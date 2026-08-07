@@ -54,7 +54,7 @@ export function CategoriaList({ token, categoriasIniciales }: CategoriaListProps
       <div className="space-y-6">
         <button
           onClick={cerrarFormulario}
-          className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+          className="text-sm font-medium text-gray-900 transition-colors duration-150 hover:text-indigo-600"
         >
           ← Volver a la lista
         </button>
@@ -71,10 +71,10 @@ export function CategoriaList({ token, categoriasIniciales }: CategoriaListProps
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">Categorías</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">Categorías</h1>
         <button
           onClick={abrirCreacion}
-          className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-indigo-500"
         >
           + Nueva categoría
         </button>
@@ -89,25 +89,25 @@ export function CategoriaList({ token, categoriasIniciales }: CategoriaListProps
         />
       )}
 
-      <div className="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800">
-        <ul className="divide-y divide-neutral-200 dark:divide-neutral-800">
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+        <ul className="divide-y divide-gray-200">
           {categorias.map((categoria) => (
             <li
               key={categoria.id}
-              className="flex items-center justify-between px-4 py-3 text-sm text-neutral-800 dark:text-neutral-200"
+              className="flex items-center justify-between px-4 py-3 text-sm text-gray-900 transition-colors duration-150 hover:bg-gray-50"
             >
               <span className="font-medium">{categoria.nombre}</span>
               <div>
                 <button
                   onClick={() => abrirEdicion(categoria)}
-                  className="mr-3 text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                  className="mr-3 text-sm font-medium text-gray-900 transition-colors duration-150 hover:text-indigo-600"
                 >
                   Editar
                 </button>
                 <button
                   onClick={() => setCategoriaAEliminar(categoria)}
                   disabled={isPending}
-                  className="text-sm font-medium text-red-600 hover:text-red-700 disabled:opacity-50 dark:text-red-400"
+                  className="text-sm font-medium text-red-600 transition-colors duration-150 hover:text-red-700 disabled:opacity-50"
                 >
                   Eliminar
                 </button>
@@ -116,7 +116,7 @@ export function CategoriaList({ token, categoriasIniciales }: CategoriaListProps
           ))}
 
           {categorias.length === 0 && (
-            <li className="px-4 py-8 text-center text-sm text-neutral-500 dark:text-neutral-400">
+            <li className="px-4 py-8 text-center text-sm text-gray-900">
               Todavía no creaste ninguna categoría.
             </li>
           )}

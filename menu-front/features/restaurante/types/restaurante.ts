@@ -11,6 +11,8 @@ export interface RestaurantePerfil {
   telefono: string | null;
   instagramUrl: string | null;
   tiktokUrl: string | null;
+  colorFondo: string | null;
+  colorTexto: string | null;
 }
 
 export type UpdateRestauranteInput = Partial<Omit<RestaurantePerfil, 'id' | 'slug'>>;

@@ -31,6 +31,10 @@ model Restaurante {
   instagramUrl  String?
   tiktokUrl     String?
 
+  // Tema del menú público
+  colorFondo String? // hex, ej "#d4dc94"
+  colorTexto String? // hex, ej "#111111"
+
   categorias Categoria[]
   platos     Plato[]
   usuarios   Usuario[]

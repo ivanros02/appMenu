@@ -15,8 +15,8 @@ interface PlatoFormProps {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-neutral-300 bg-transparent px-3 py-2 text-sm outline-none focus:border-neutral-900 dark:border-neutral-700 dark:focus:border-neutral-100';
-const labelClass = 'mb-1 block text-sm font-medium text-neutral-700 dark:text-neutral-300';
+  'w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 outline-none transition-colors duration-150 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500';
+const labelClass = 'mb-1 block text-sm font-medium text-gray-900';
 
 export function PlatoForm({
   token,
@@ -79,11 +79,9 @@ export function PlatoForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+      className="space-y-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
     >
-      <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-        {esEdicion ? 'Editar plato' : 'Nuevo plato'}
-      </h2>
+      <h2 className="text-lg font-semibold text-gray-900">{esEdicion ? 'Editar plato' : 'Nuevo plato'}</h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -152,15 +150,12 @@ export function PlatoForm({
           <label className={labelClass}>Etiquetas</label>
           <div className="flex flex-wrap gap-3">
             {etiquetas.map((etiqueta) => (
-              <label
-                key={etiqueta.id}
-                className="flex items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300"
-              >
+              <label key={etiqueta.id} className="flex items-center gap-2 text-sm text-gray-900">
                 <input
                   type="checkbox"
                   checked={form.etiquetas?.includes(etiqueta.id) ?? false}
                   onChange={() => toggleEtiqueta(etiqueta.id)}
-                  className="h-4 w-4 rounded border-neutral-300"
+                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 />
                 {etiqueta.nombre}
               </label>
@@ -168,31 +163,31 @@ export function PlatoForm({
           </div>
         </div>
 
-        <label className="flex items-center gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+        <label className="flex items-center gap-2 text-sm text-gray-900">
           <input
             type="checkbox"
             checked={form.disponible}
             onChange={(e) => setForm({ ...form, disponible: e.target.checked })}
-            className="h-4 w-4 rounded border-neutral-300"
+            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
           />
           Disponible en el menú
         </label>
       </div>
 
-      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="flex justify-end gap-3 pt-2">
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-lg px-4 py-2 text-sm font-medium text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+          className="rounded-lg px-4 py-2 text-sm font-medium text-gray-900 transition-colors duration-150 hover:bg-gray-100"
         >
           Cancelar
         </button>
         <button
           type="submit"
           disabled={enviando}
-          className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:opacity-50 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-indigo-500 disabled:opacity-50"
         >
           {enviando ? 'Guardando...' : esEdicion ? 'Guardar cambios' : 'Crear plato'}
         </button>

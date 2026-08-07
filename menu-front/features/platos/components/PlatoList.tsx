@@ -64,7 +64,7 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
       <div className="space-y-6">
         <button
           onClick={cerrarFormulario}
-          className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+          className="text-sm font-medium text-gray-900 transition-colors duration-150 hover:text-indigo-600"
         >
           ← Volver a la lista
         </button>
@@ -83,10 +83,10 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-100">Platos</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">Platos</h1>
         <button
           onClick={abrirCreacion}
-          className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
+          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-indigo-500"
         >
           + Nuevo plato
         </button>
@@ -103,9 +103,9 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
         />
       )}
 
-      <div className="overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-800">
+      <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
         <table className="w-full text-left text-sm">
-          <thead className="bg-neutral-50 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400">
+          <thead className="bg-gray-50 text-gray-900">
             <tr>
               <th className="px-4 py-3 font-medium">Plato</th>
               <th className="px-4 py-3 font-medium">Categoría</th>
@@ -114,11 +114,11 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
               <th className="px-4 py-3" />
             </tr>
           </thead>
-          <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800">
+          <tbody className="divide-y divide-gray-200">
             {platos.map((plato) => {
               const categoria = categorias.find((c) => c.id === plato.categoriaId);
               return (
-                <tr key={plato.id} className="text-neutral-800 dark:text-neutral-200">
+                <tr key={plato.id} className="text-gray-900 transition-colors duration-150 hover:bg-gray-50">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       {plato.imagenUrl ? (
@@ -130,7 +130,7 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
                           className="h-10 w-10 rounded-lg object-cover"
                         />
                       ) : (
-                        <div className="h-10 w-10 rounded-lg bg-neutral-100 dark:bg-neutral-800" />
+                        <div className="h-10 w-10 rounded-lg bg-gray-100" />
                       )}
                       <span className="font-medium">{plato.nombre}</span>
                     </div>
@@ -140,9 +140,7 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
                   <td className="px-4 py-3">
                     <span
                       className={`rounded-full px-2 py-1 text-xs font-medium ${
-                        plato.disponible
-                          ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300'
-                          : 'bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'
+                        plato.disponible ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-900'
                       }`}
                     >
                       {plato.disponible ? 'Disponible' : 'Pausado'}
@@ -151,14 +149,14 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
                   <td className="px-4 py-3 text-right">
                     <button
                       onClick={() => abrirEdicion(plato)}
-                      className="mr-3 text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                      className="mr-3 text-sm font-medium text-gray-900 transition-colors duration-150 hover:text-indigo-600"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => setPlatoAEliminar(plato)}
                       disabled={isPending}
-                      className="text-sm font-medium text-red-600 hover:text-red-700 disabled:opacity-50 dark:text-red-400"
+                      className="text-sm font-medium text-red-600 transition-colors duration-150 hover:text-red-700 disabled:opacity-50"
                     >
                       Eliminar
                     </button>
@@ -169,7 +167,7 @@ export function PlatoList({ token, categorias, etiquetas, platosIniciales }: Pla
 
             {platos.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-8 text-center text-neutral-500 dark:text-neutral-400">
+                <td colSpan={5} className="px-4 py-8 text-center text-gray-900">
                   Todavía no cargaste ningún plato.
                 </td>
               </tr>

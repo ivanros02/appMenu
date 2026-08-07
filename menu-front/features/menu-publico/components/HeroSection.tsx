@@ -9,7 +9,7 @@ export function HeroSection({ restaurante }: HeroSectionProps) {
   return (
     <section className="space-y-3 px-5 py-5">
       {restaurante.horarioTexto && (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50/80 px-3 py-1 text-xs font-medium text-emerald-700 backdrop-blur-sm dark:bg-emerald-950/40 dark:text-emerald-300">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
           {restaurante.horarioTexto}
         </span>
@@ -21,7 +21,7 @@ export function HeroSection({ restaurante }: HeroSectionProps) {
             href={restaurante.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full border border-slate-100 bg-white px-3 py-1.5 text-sm text-slate-600 shadow-sm transition-colors duration-200 hover:border-indigo-100 hover:text-indigo-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-indigo-900 dark:hover:text-indigo-400"
+            className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/30 px-3 py-1.5 text-sm text-brand-text shadow-sm backdrop-blur-sm transition-colors duration-200 hover:bg-white/50"
           >
             <MapPin className="h-4 w-4 shrink-0" />
             {restaurante.direccion}
@@ -29,7 +29,7 @@ export function HeroSection({ restaurante }: HeroSectionProps) {
         )}
 
         {restaurante.wifiNombre && (
-          <span className="flex items-center gap-1.5 rounded-full border border-slate-100 bg-white px-3 py-1.5 text-sm text-slate-600 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
+          <span className="flex items-center gap-1.5 rounded-full border border-white/30 bg-white/30 px-3 py-1.5 text-sm text-brand-text shadow-sm backdrop-blur-sm">
             <Wifi className="h-4 w-4 shrink-0" />
             {restaurante.wifiNombre}
             {restaurante.wifiPassword && ` · ${restaurante.wifiPassword}`}
